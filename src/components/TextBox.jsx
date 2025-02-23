@@ -4,7 +4,7 @@ import CollectionsIcon from '@mui/icons-material/Collections';
 import MicIcon from '@mui/icons-material/Mic';
 import SendIcon from '@mui/icons-material/Send';
 import { motion, AnimatePresence } from "framer-motion";
-const TextBox = () => {
+const TextBox = ({sendData}) => {
     const [prompt,setPrompt]  = useState("")
     const clicked = prompt.trim().length > 0;
   return (
@@ -22,13 +22,15 @@ const TextBox = () => {
   <AnimatePresence mode="wait">
     {clicked ? (
       <motion.div
+         whileHover={{scale:1.5}}
         key="send-icon"
         initial={{ opacity: 0, scale: 0.8, rotate: -30 }}
         animate={{ opacity: 1, scale: 1, rotate: 0 }}
         exit={{ opacity: 0, scale: 0.8, rotate: 30 }}
         transition={{ duration: 0.2, ease: "easeInOut" }}
       >
-        <SendIcon />
+        <SendIcon onClick={()=>{ sendData(prompt);
+         }}/>
       </motion.div>
     ) : (
       <motion.div
