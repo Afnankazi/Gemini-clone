@@ -13,14 +13,19 @@ import {
   Terminal,
   TypingAnimation,
 } from "./AnimatedSpan";
+import { div } from "framer-motion/client";
 
 
 
 const Main = () => {
   const[userText ,setUserText] = useState("");
+  const[output ,setOutput] = useState([sqlContent]);
 
   function handelChildData(Text){
         setUserText(Text)
+        setOutput((pre)=>([...pre,userText]))
+        console.log(output);
+        
       
   }
   return (
@@ -52,13 +57,10 @@ const Main = () => {
           {/* Content Window */}
           <div className="bg-black/30 backdrop-blur-lg rounded-lg p-6 mb-4 shadow-2xs shadow-neutral-50/15">
             <div className="flex items-start gap-4 text-amber-50">
-              <img
-                src={assets.gemini2}
-                className="w-12 h-12 rounded-full"
-                alt="Gemini AI avatar"
-              />
+              
               <div className="overflow-y-auto h-[60vh] scrollbar-hidden scroll-smooth leading-10 tracking-wide">
                
+              {output.map((output,index)=>( index%2==0? <div key={index} > 
                 <Markdown
                   components={{
                     code({ node, inline, className, children, ...props }) {
@@ -77,13 +79,21 @@ const Main = () => {
                     },
                   }}
                 >
-                  {sqlContent}
+                  {output} 
                 </Markdown>
-                <div className="flex w-full justify-end rounded-full"> 
-                   <div className="px-3 py-2 bg-amber-900 text-white rounded-full text-right">
-                      {userText} test
+                </div> : ( 
+                
+                <div key={index} className="flex w-full justify-end rounded-full"> 
+                   <div className="px-3 py-1 bg-purple-950  text-white rounded-full text-right">
+                      {output} 
                        </div>
                   </div>
+                )
+              )
+              
+              
+              )}
+              
                 
                
               </div>
