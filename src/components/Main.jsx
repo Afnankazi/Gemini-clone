@@ -15,25 +15,23 @@ import {
 } from "./AnimatedSpan";
 
 const Main = () => {
-  const [userText, setUserText] = useState("");
   const [output, setOutput] = useState([sqlContent]);
   const topref = useRef(null);
 
   const handleScroll = () => {
     if (topref.current) {
-      // Scroll to the bottom of the container
-      topref.current.scrollTop = topref.current.scrollHeight*2;
+      topref.current.scrollTop = topref.current.scrollHeight;
       console.log(topref.current.scrollTop );
       
     }
   };
 
   function handelChildData(Text) {
-    setUserText(Text);
-    setOutput((pre) => [...pre, userText]);
+    setOutput((pre) => [...pre, Text]);
     setTimeout(()=>{handleScroll()},200)
-  
   }
+
+ // useEffect(())
 
   return (
     <div className="relative h-screen w-full overflow-hidden flex flex-col">
