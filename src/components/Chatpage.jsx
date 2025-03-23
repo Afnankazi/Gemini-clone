@@ -11,7 +11,7 @@ import "../index.css";
 import { AnimatedSpan, Terminal, TypingAnimation } from "./AnimatedSpan";
 import { useLocation } from "react-router-dom";
 
-const Chatpage = ({location}) => {
+const Chatpage = ({location,userImage}) => {
   const topref = useRef(null);
   const loc =location;
   const [output, setOutput] = useState(() => []);
@@ -56,11 +56,19 @@ const Chatpage = ({location}) => {
         </div>
 
         <motion.div
-          className="p-2 rounded-full bg-white/10 backdrop-blur-sm"
+          className="p-2 rounded-full"
           whileHover={{ scale: 1.1 }}
           transition={{ type: "spring", stiffness: 300 }}
         >
-          <PersonIcon className="text-amber-50" />
+          {userImage ? (
+            <img 
+              src={userImage} 
+              alt="User Profile" 
+              className="w-10 h-10 rounded-full"
+            />
+          ) : (
+            <PersonIcon className="text-amber-50" />
+          )}
         </motion.div>
       </header>
 

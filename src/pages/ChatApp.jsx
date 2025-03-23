@@ -28,7 +28,7 @@ const ChatApp = () => {
         <div>
             <div className="grid grid-cols-[1fr_60fr]">
                 <Sidebar />
-                <Chatpage location={location} />
+                <Chatpage location={location} userImage={user.picture} />
             </div>
         </div>
     )

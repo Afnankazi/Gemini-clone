@@ -73,7 +73,7 @@ const Main = ({userImage , usersub}) => {
         <div className="w-full max-w-4xl relative">
           {/* Content Window */}
           <div className="text-amber-50 flex items-center justify-center w-full mb-70">
-          Hello Afnan
+          Hello {user.name.split(' ')[0]}
           </div>
          
 
