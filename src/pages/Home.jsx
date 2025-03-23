@@ -24,7 +24,7 @@ const Home = () => {
     return(
       <div className="grid grid-cols-[1fr_60fr]">
         <Sidebar />
-        <Main userImage= {user.picture} />
+        <Main userImage= {user.picture} usersub={user.sub} />
       </div>
     )
   }

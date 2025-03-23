@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { use, useRef, useState } from "react";
 import { BackgroundBeamsWithCollision } from "./BackgroundBeamsWithCollision";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { motion } from "framer-motion";
@@ -7,22 +7,26 @@ import Markdown from "react-markdown";
 import PersonIcon from "@mui/icons-material/Person";
 import { assets } from "../assets/assets/assets";
 import "../index.css";
-import {useNavigate} from "react-router-dom"
+import {Navigate, useNavigate} from "react-router-dom"
 import { sqlContent } from "../lib/content";
 import {
   AnimatedSpan,
   Terminal,
   TypingAnimation,
 } from "./AnimatedSpan";
+import { useAuth0 } from "@auth0/auth0-react";
 
-const Main = ({userImage}) => {
+const Main = ({userImage , usersub}) => {
+  
   const [output, setOutput] = useState("");
   const topref = useRef(null);
   const nav =    useNavigate();
   
-
+  const{user} = useAuth0();
+  
   function handelChildData(Text) {
-    const id = 2;
+  
+    const id = usersub;
     setOutput(Text);
     console.log("nav:"+Text);
     
